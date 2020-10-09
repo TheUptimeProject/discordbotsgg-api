@@ -1,4 +1,4 @@
-import snekfetch from "snekfetch";
+import request from "request";
 
 export default class DiscordBotsGG_API {
     private readonly m_base: string = "https://discord.bots.gg/api/v1";
@@ -27,18 +27,21 @@ export default class DiscordBotsGG_API {
                 if (typeof stats.shardCount != "number") reject("shardCount must be a number");
             }
 
-            // Post stats
-            snekfetch
-                .post(`${this.m_base}/bots/${id}/stats`)
-                .set("Authorization", this.m_token)
-                .send(stats)
-                .then((res) => {
-                    //@ts-ignore
-                    resolve(JSON.parse(res.body));
-                })
-                .catch((error) => {
-                    reject(error);
-                });
+            request(
+                {
+                    method: "POST",
+                    url: `${this.m_base}/bots/${id}/stats`,
+                    headers: {
+                        Authorization: this.m_token,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(stats),
+                },
+                function (error, response) {
+                    if (error) reject(error);
+                    resolve(response.body);
+                }
+            );
         });
     }
 
@@ -52,17 +55,18 @@ export default class DiscordBotsGG_API {
             // Type safety
             if (typeof id != "string") reject("ID must be a string");
 
-            // Make request
-            snekfetch
-                .get(`${this.m_base}/bots/${id}`)
-                .send({ sanitized: options.sanitizeDescription })
-                .then((res) => {
-                    //@ts-ignore
-                    resolve(JSON.parse(res.body));
-                })
-                .catch((error) => {
-                    reject(error);
-                });
+            request(
+                {
+                    method: "GET",
+                    url: `${this.m_base}/bots/${id}`,
+                    headers: {},
+                    body: JSON.stringify(options),
+                },
+                function (error, response) {
+                    if (error) reject(error);
+                    resolve(response.body);
+                }
+            );
         });
     }
 }

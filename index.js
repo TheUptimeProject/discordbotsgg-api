@@ -1,5 +1,10 @@
-import snekfetch from "snekfetch";
-export default class DiscordBotsGG_API {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const request_1 = __importDefault(require("request"));
+class DiscordBotsGG_API {
     constructor(token) {
         this.m_base = "https://discord.bots.gg/api/v1";
         if (typeof token != "string")
@@ -28,17 +33,18 @@ export default class DiscordBotsGG_API {
                 if (typeof stats.shardCount != "number")
                     reject("shardCount must be a number");
             }
-            // Post stats
-            snekfetch
-                .post(`${this.m_base}/bots/${id}/stats`)
-                .set("Authorization", this.m_token)
-                .send(stats)
-                .then((res) => {
-                //@ts-ignore
-                resolve(JSON.parse(res.body));
-            })
-                .catch((error) => {
-                reject(error);
+            request_1.default({
+                method: "POST",
+                url: `${this.m_base}/bots/${id}/stats`,
+                headers: {
+                    Authorization: this.m_token,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(stats),
+            }, function (error, response) {
+                if (error)
+                    reject(error);
+                resolve(response.body);
             });
         });
     }
@@ -52,17 +58,17 @@ export default class DiscordBotsGG_API {
             // Type safety
             if (typeof id != "string")
                 reject("ID must be a string");
-            // Make request
-            snekfetch
-                .get(`${this.m_base}/bots/${id}`)
-                .send({ sanitized: options.sanitizeDescription })
-                .then((res) => {
-                //@ts-ignore
-                resolve(JSON.parse(res.body));
-            })
-                .catch((error) => {
-                reject(error);
+            request_1.default({
+                method: "GET",
+                url: `${this.m_base}/bots/${id}`,
+                headers: {},
+                body: JSON.stringify(options),
+            }, function (error, response) {
+                if (error)
+                    reject(error);
+                resolve(response.body);
             });
         });
     }
 }
+exports.default = DiscordBotsGG_API;

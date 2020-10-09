@@ -1,24 +1,24 @@
 {
-    "name": "discordbotsgg-api",
-    "version": "1.0.0",
-    "description": "A simple library to interact with the discord.bots.gg api",
-    "main": "index.js",
-    "scripts": {},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/UptimeOnDiscord/discordbotsgg-api.git"
-    },
-    "keywords": [],
-    "author": "UptimeOnDiscord",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/UptimeOnDiscord/discordbotsgg-api/issues"
-    },
-    "homepage": "https://github.com/UptimeOnDiscord/discordbotsgg-api#readme",
-    "dependencies": {
-        "snekfetch": "^4.0.4"
-    },
-    "devDependencies": {
-        "@types/snekfetch": "^4.0.2"
-    }
+  "name": "discordbotsgg-api",
+  "version": "1.0.1",
+  "description": "A simple library to interact with the discord.bots.gg api",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UptimeOnDiscord/discordbotsgg-api.git"
+  },
+  "keywords": [],
+  "author": "UptimeOnDiscord",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UptimeOnDiscord/discordbotsgg-api/issues"
+  },
+  "homepage": "https://github.com/UptimeOnDiscord/discordbotsgg-api#readme",
+  "dependencies": {
+    "request": "2.88.2"
+  },
+  "devDependencies": {
+    "@types/request": "2.48.5"
+  }
 }
