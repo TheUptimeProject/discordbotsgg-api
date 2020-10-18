@@ -44,7 +44,7 @@ class DiscordBotsGG_API {
             }, function (error, response) {
                 if (error)
                     reject(error);
-                resolve(response.body);
+                resolve(response === null || response === void 0 ? void 0 : response.body);
             });
         });
     }
@@ -66,7 +66,7 @@ class DiscordBotsGG_API {
             }, function (error, response) {
                 if (error)
                     reject(error);
-                resolve(response.body);
+                resolve(response === null || response === void 0 ? void 0 : response.body);
             });
         });
     }

@@ -39,7 +39,7 @@ export default class DiscordBotsGG_API {
                 },
                 function (error, response) {
                     if (error) reject(error);
-                    resolve(response.body);
+                    resolve(response?.body);
                 }
             );
         });
@@ -64,7 +64,7 @@ export default class DiscordBotsGG_API {
                 },
                 function (error, response) {
                     if (error) reject(error);
-                    resolve(response.body);
+                    resolve(response?.body);
                 }
             );
         });
