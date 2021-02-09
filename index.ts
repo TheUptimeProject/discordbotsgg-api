@@ -1,4 +1,4 @@
-import request from "request";
+import * as request from "request";
 
 export default class DiscordBotsGG_API {
     private readonly m_base: string = "https://discord.bots.gg/api/v1";
@@ -27,7 +27,7 @@ export default class DiscordBotsGG_API {
                 if (typeof stats.shardCount != "number") reject("shardCount must be a number");
             }
 
-            request(
+            request.post(
                 {
                     method: "POST",
                     url: `${this.m_base}/bots/${id}/stats`,
@@ -55,7 +55,7 @@ export default class DiscordBotsGG_API {
             // Type safety
             if (typeof id != "string") reject("ID must be a string");
 
-            request(
+            request.get(
                 {
                     method: "GET",
                     url: `${this.m_base}/bots/${id}`,
